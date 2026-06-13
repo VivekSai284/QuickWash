@@ -22,7 +22,7 @@ const Footer = () => {
     {/* Support Column */}
     <div className="footer-links">
       <h3>Company</h3>
-      <Link to>About Us</Link>
+      <Link to="/about">About Us</Link>
       <Link to="/contact">Contact Support</Link>
       <Link to="/privacy">Privacy Policy</Link>
     </div>
