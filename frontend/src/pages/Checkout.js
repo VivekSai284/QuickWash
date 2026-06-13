@@ -43,7 +43,7 @@ const Checkout = () => {
         }));
 
       await axios.post(
-        "http://localhost:5000/orders",
+        "https://quickwash-l49a.onrender.com/orders",
         {
           items: orderItems,
           totalAmount: total,

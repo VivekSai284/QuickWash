@@ -21,7 +21,7 @@ const MyDeliveries = () => {
     try {
       const token = localStorage.getItem("token");
       const res = await axios.get(
-        "http://localhost:5000/orders/partner-orders",
+        "https://quickwash-l49a.onrender.com/orders/partner-orders",
         {
           headers: {
             Authorization: token,
@@ -45,7 +45,7 @@ const MyDeliveries = () => {
     try {
       const token = localStorage.getItem("token");
       await axios.put(
-        `http://localhost:5000/orders/status/${id}`,
+        `https://quickwash-l49a.onrender.com/orders/status/${id}`,
         { status },
         {
           headers: {

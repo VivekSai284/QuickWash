@@ -14,7 +14,7 @@ const PartnerDashboard = () => {
   const fetchOrders = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get("http://localhost:5000/orders/pending", {
+      const res = await axios.get("https://quickwash-l49a.onrender.com/orders/pending", {
         headers: { Authorization: token }
       });
       setOrders(res.data);
@@ -28,7 +28,7 @@ const PartnerDashboard = () => {
   const acceptOrder = async (id) => {
     try {
       const token = localStorage.getItem("token");
-      await axios.put(`http://localhost:5000/orders/accept/${id}`, {}, {
+      await axios.put(`https://quickwash-l49a.onrender.com/orders/accept/${id}`, {}, {
         headers: { Authorization: token }
       });
       fetchOrders();

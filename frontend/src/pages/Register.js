@@ -27,7 +27,7 @@ const Register = () => {
     try {
       setLoading(true);
       const response = await axios.post(
-        "http://localhost:5000/auth/register",
+        "https://quickwash-l49a.onrender.com/auth/register",
         itemData,
       );
       setPopup({

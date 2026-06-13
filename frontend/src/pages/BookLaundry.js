@@ -30,7 +30,7 @@ const BookLaundry = () => {
 
   const fetchItems = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/items");
+      const response = await axios.get("https://quickwash-l49a.onrender.com/items");
 
       setItems(response.data);
     } catch (error) {
