@@ -15,21 +15,22 @@ const Footer = () => {
     <div className="footer-links">
       <h3>Services</h3>
       <Link to="/services">Dry Cleaning </Link>
-      <a href="/services">Wash & Fold</a>
-      <a href="/services">Steam Ironing</a>
+      <Link to="/services">Wash & Fold</Link>
+      <Link to="/services">Steam Ironing</Link>
     </div>
 
     {/* Support Column */}
     <div className="footer-links">
       <h3>Company</h3>
-      <a href="/about">About Us</a>
-      <a href="/contact">Contact Support</a>
-      <a href="/privacy">Privacy Policy</a>
+      <Link to>About Us</Link>
+      <Link to="/contact">Contact Support</Link>
+      <Link to="/privacy">Privacy Policy</Link>
     </div>
   </div>
 
   {/* Copyright Bar */}
   <div className="footer-bottom">
+    <p>Made with ❤️ by Vivek.</p>
     <p>&copy; {new Date().getFullYear()} QuickWash. All rights reserved.</p>
   </div>
 </footer>
