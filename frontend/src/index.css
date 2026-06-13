@@ -1,0 +1,3312 @@
+/* ==========================================================================
+   1. DESIGN SYSTEM & VARIABLES
+   ========================================================================== */
+:root {
+  /* Brand Colors (Clean, Trustworthy Blues & Teals) */
+  --primary: #2563eb;         /* Vibrant Brand Blue */
+  --primary-hover: #1d4ed8;   /* Darker Blue for Hovers */
+  --primary-light: #eff6ff;   /* Soft Blue for Backgrounds/Highlights */
+  
+  /* Neutral Palette */
+  --background: #f8fafc;      /* Soft, modern off-white background */
+  --surface: #ffffff;         /* Pure white for cards, navbars, etc. */
+  --text-main: #0f172a;       /* Deep slate/almost black for high readability */
+  --text-muted: #475569;      /* Slate gray for secondary text */
+  --border: #e2e8f0;          /* Subtle borders */
+
+  /* Status Colors */
+  --danger: #ef4444;          /* Red for Logout/Errors */
+  --danger-hover: #dc2626;
+
+  /* Layout Constants */
+  --max-width: 1200px;
+  --radius: 8px;
+  --transition: all 0.2s ease-in-out;
+}
+
+/* ==========================================================================
+   2. GLOBAL BASE STYLES
+   ========================================================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--text-main);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+}
+
+code {
+  font-family: Fira Code, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  font-size: 0.9em;
+  background-color: var(--border);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+}
+
+
+
+
+
+
+
+/* ==========================================================================
+   3. NAVBAR COMPONENT STYLING
+   ========================================================================== */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0.75rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Container to keep content centered if screen is ultrawide */
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+/* Logo Styling */
+.navbar .logo {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--primary);
+  letter-spacing: -0.5px;
+  text-transform: tracking-tight;
+}
+
+/* Navigation Links Wrapper */
+.navbar .nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+/* Standard Nav Links */
+.navbar .nav-links a {
+  text-decoration: none;
+  color: var(--text-muted);
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: var(--transition);
+}
+
+.navbar .nav-links a:hover {
+  color: var(--primary);
+}
+
+/* Styled Action Buttons (Login / Register / Logout) */
+.navbar .nav-links a[href="/login"] {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.navbar .nav-links a[href="/register"] {
+  background-color: var(--primary-light);
+  color: var(--primary);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+  font-weight: 600;
+}
+
+.navbar .nav-links a[href="/register"]:hover {
+  background-color: var(--primary);
+  color: white;
+}
+
+/* Red Logout Button */
+.navbar .logout-btn {
+  background-color: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.navbar .logout-btn:hover {
+  background-color: var(--danger);
+  border-color: var(--danger);
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   5. REGISTER & LOGIN FORM STYLING
+   ========================================================================== */
+
+/* Centered Form Wrapper Layout */
+.register, .login {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) * 1.5); /* Slightly softer corners for large cards */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  
+  width: 100%;
+  max-width: 420px;       /* Professional, standard form width */
+  margin: 3rem auto;       /* Centers the card on the screen with top/bottom space */
+  padding: 2.5rem;
+}
+
+/* Heading Typography */
+.register h1, .login h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 1.75rem;
+  text-align: center;
+  letter-spacing: -0.5px;
+}
+
+/* Form Layout Stack */
+.register form, .login form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem; /* Consistent gaps instead of erratic margins */
+}
+
+/* Field Group Setup (Label & Input Alignment) */
+.register label, .login label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: -0.75rem; /* Pulls the label closer to its corresponding field */
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.register input, .login input,
+.register select, .login select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: var(--text-main);
+  background-color: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  outline: none;
+  transition: var(--transition);
+}
+
+/* Placeholder Color Correction */
+.register input::placeholder, .login input::placeholder {
+  color: #94a3b8; /* Soft slate gray */
+}
+
+/* Interactive Focus States (Changes border to brand primary) */
+.register input:focus, .login input:focus,
+.register select:focus, .login select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15); /* Soft outer primary glow */
+}
+
+.register select, .login select {
+  cursor: pointer;
+  appearance: none; /* Clears default browser styling */
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23475569' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1rem;
+  padding-right: 2.5rem;
+}
+
+
+/* Primary Action Submit Buttons */
+.register button[type="submit"], 
+.login button[type="submit"] {
+  background-color: var(--primary);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius);
+  padding: 0.85rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: var(--transition);
+}
+
+
+.register button[type="submit"]:hover, 
+.login button[type="submit"]:hover {
+  background-color: var(--primary-hover);
+}
+
+.register button[type="submit"]:active, 
+.login button[type="submit"]:active {
+  transform: scale(0.99); /* Subtle micro-interaction on click */
+}
+
+
+/* ==========================================================================
+   7. PROFESSIONAL FOOTER STYLING
+   ========================================================================== */
+.footer {
+  background-color: var(--surface);
+  border-top: 1px solid var(--border);
+  color: var(--text-main);
+  padding: 4rem 2rem 1.5rem 2rem;
+  margin-top: auto; /* Pushes footer to bottom if page content is short */
+}
+
+/* Master Centered Grid Container */
+.footer-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr; /* Brand column gets more breathing room */
+  gap: 3rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+/* Brand Section Details */
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.footer-brand .logo {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--primary);
+  letter-spacing: -0.5px;
+}
+
+.footer-brand p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  max-width: 320px;
+}
+
+/* Link Columns Configuration */
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.footer-links h3 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-main);
+  margin-bottom: 0.5rem;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  transition: var(--transition);
+  width: fit-content;
+  cursor: pointer;
+}
+
+.footer-links a:hover {
+  color: var(--primary);
+  transform: translateX(3px); /* Subtle micro-interaction on hover */
+}
+
+/* Bottom Copyright Bar Wrapper */
+.footer-bottom {
+  max-width: var(--max-width);
+  margin: 3rem auto 0 auto;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+.footer-bottom p {
+  color: #94a3b8; /* Soft subtle gray */
+  font-size: 0.85rem;
+}
+
+
+/* ==========================================================================
+   8. LAUNDRY BOOKING & CART SCREEN
+   ========================================================================== */
+
+/* Page Wrapper */
+.book-laundry {
+  max-width: var(--max-width);
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+
+.book-laundry .page-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 2rem;
+  letter-spacing: -0.5px;
+}
+
+/* Master Grid Layout: Splits screen into Item Grid (left) and Summary (right) */
+.booking-layout {
+  display: grid;
+  grid-template-columns: 7fr 4fr; /* Balanced proportions */
+  gap: 2.5rem;
+  align-items: start;
+}
+
+/* --------------------------------------------------------------------------
+   Service Item Cards List
+   -------------------------------------------------------------------------- */
+.laundry-items-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.laundry-item-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: var(--transition);
+}
+
+.laundry-item-card:hover {
+  border-color: var(--primary);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.04);
+}
+
+/* Typography elements within service cards */
+.item-info h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 0.25rem;
+}
+
+.item-price {
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+/* Counter Control Blocks */
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  background-color: var(--background);
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) / 1.5);
+  padding: 0.25rem;
+}
+
+.qty-btn {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.qty-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background-color: var(--primary-light);
+}
+
+
+.qty-count {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-main);
+  min-width: 40px;
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   Sticky Cart Summary Panel
+   -------------------------------------------------------------------------- */
+.cart-summary {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  position: sticky;
+  top: 100px; /* Aligns comfortably beneath your sticky navbar */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+}
+
+.cart-summary h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid var(--background);
+  padding-bottom: 0.75rem;
+}
+
+.cart-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-height: 250px;
+  overflow-y: auto; /* Handles massive lists gracefully */
+  margin-bottom: 1.5rem;
+}
+
+.cart-summary-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.summary-item-total {
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+/* Grand Total Indicator */
+.total-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--border);
+  padding-top: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.total-section span:first-child {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.grand-total {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+/* Action Button */
+.checkout-btn {
+  width: 100%;
+  background-color: var(--primary);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius);
+  padding: 0.85rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.checkout-btn:hover {
+  background-color: var(--primary-hover);
+}
+
+.checkout-btn:disabled {
+  background-color: #cbd5e1; /* Flat gray when empty */
+  cursor: not-allowed;
+}
+
+.checkout-page {
+  max-width: var(--max-width);
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+
+.checkout-page .page-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 2rem;
+  letter-spacing: -0.5px;
+}
+
+/* Structural Layout split */
+.checkout-layout {
+  display: grid;
+  grid-template-columns: 5fr 6fr; /* Elegant distribution */
+  gap: 2.5rem;
+  align-items: start;
+}
+
+/* Shared Card Bases */
+.checkout-summary-card,
+.checkout-form-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2.25rem;
+}
+
+.checkout-layout h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--background);
+}
+
+/* --------------------------------------------------------------------------
+   Left Box: Order Summary Specs
+   -------------------------------------------------------------------------- */
+.checkout-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.checkout-item-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.95rem;
+}
+
+.item-meta {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.item-qty {
+  font-weight: 600;
+  color: var(--primary);
+  margin-left: 0.25rem;
+}
+
+.item-subtotal {
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+/* Grand Total Bar Accent */
+.checkout-total-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--border);
+  padding-top: 1.5rem;
+}
+
+.checkout-total-bar span:first-child {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.checkout-total-bar .total-amount {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--primary); /* Eye-catching total price */
+}
+
+/* --------------------------------------------------------------------------
+   Right Box: Form Logic Elements
+   ========================================================================== */
+.checkout-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.checkout-form .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.checkout-form label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Textarea, Inputs, and Select Overrides */
+.checkout-form textarea,
+.checkout-form input[type="date"],
+.checkout-form select {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: var(--text-main);
+  background-color: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  outline: none;
+  transition: var(--transition);
+}
+
+/* Specific Textarea settings */
+.checkout-form textarea {
+  min-height: 100px;
+  resize: vertical; /* Restricts layout breaking horizontal drags */
+  line-height: 1.5;
+}
+
+/* Interaction Focus Overrides */
+.checkout-form textarea:focus,
+.checkout-form input[type="date"]:focus,
+.checkout-form select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* Select element styling matching register panel dropdown chevron */
+.checkout-form select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23475569' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1rem;
+  padding-right: 2.5rem;
+}
+
+/* Placement Submit Button */
+.place-order-btn {
+  width: 100%;
+  background-color: var(--primary);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius);
+  padding: 1rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+  margin-top: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+}
+
+.place-order-btn:hover {
+  background-color: var(--primary-hover);
+  box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
+}
+
+.place-order-btn:active {
+  transform: scale(0.99);
+}
+
+/* ==========================================================================
+   10. MY ORDERS HISTORY DASHBOARD
+   ========================================================================== */
+
+.orders-page {
+  max-width: var(--max-width);
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+
+.orders-page .page-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 2rem;
+  letter-spacing: -0.5px;
+}
+
+/* Container spacing for the listing array */
+.orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* Master Order Card */
+.order-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: var(--transition);
+  overflow: hidden; /* Keeps badge corners neat if applied */
+}
+
+.order-card:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03);
+}
+
+/* --------------------------------------------------------------------------
+   Card Interior Subdivisions
+   -------------------------------------------------------------------------- */
+
+/* Top Section: Date & Status */
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  background-color: #f8fafc; /* Subtle tint separating headers */
+  border-bottom: 1px solid var(--border);
+}
+
+.order-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.meta-label, .detail-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+}
+
+.meta-value {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+/* Bottom Section: Cost & Method metrics */
+.order-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.detail-value {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-main);
+}
+
+/* Emphasized Total pricing block */
+.price-item {
+  text-align: right;
+}
+
+.detail-value.amount {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+/* --------------------------------------------------------------------------
+   Dynamic Status Badges
+   -------------------------------------------------------------------------- */
+.status-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.35rem 0.75rem;
+  border-radius: 50px; /* Fully pill-shaped */
+  letter-spacing: 0.5px;
+  background-color: var(--background);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+
+/* Success / Completed state (e.g., matching text: "completed", "delivered") */
+.status-badge.completed,
+.status-badge.delivered {
+  background-color: #ecfdf5;
+  color: #065f46;
+  border-color: #a7f3d0;
+}
+
+/* Warning / In-Progress state (e.g., matching text: "pending", "processing") */
+.status-badge.pending,
+.status-badge.processing {
+  background-color: #fffbeb;
+  color: #92400e;
+  border-color: #fde68a;
+}
+
+/* Cancelled / Failed state */
+.status-badge.cancelled,
+.status-badge.failed {
+  background-color: #fef2f2;
+  color: #991b1b;
+  border-color: #fca5a5;
+}
+
+.partner-dashboard {
+  max-width: var(--max-width);
+  margin: 2.5rem auto;
+  padding: 0 1.5rem;
+}
+
+/* Dashboard Header Block */
+.dashboard-header {
+  margin-bottom: 2.5rem;
+}
+
+.dashboard-badge {
+  display: inline-block;
+  background-color: var(--primary-light);
+  color: var(--primary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.25rem 0.75rem;
+  border-radius: 50px;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.5rem;
+}
+
+.dashboard-header h1 {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.5px;
+  margin-bottom: 0.25rem;
+}
+
+.dashboard-subtitle {
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+
+.partner-dashboard .section-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 1.25rem;
+}
+
+/* --------------------------------------------------------------------------
+   Job Request Grid Structure
+   -------------------------------------------------------------------------- */
+.partner-orders-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); /* Auto layouts columns based on screen width */
+  gap: 1.5rem;
+}
+
+/* Individual Job Request Card */
+.partner-order-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+  transition: var(--transition);
+}
+
+.partner-order-card:hover {
+  transform: translateY(-2px);
+  border-color: #cbd5e1;
+  box-shadow: 0 10px 15px -3px rgba(15, 23, 42, 0.05);
+}
+
+/* Meta label token (Shared text system) */
+.partner-order-card .meta-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+}
+
+/* Card Header Layout */
+.partner-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--background);
+}
+
+.client-info h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-top: 0.25rem;
+}
+
+.payout-info {
+  text-align: right;
+}
+
+.payout-amount {
+  display: block;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #10b981; /* Premium vibrant green representing income earnings */
+  margin-top: 0.15rem;
+}
+
+/* Card Body Layout */
+.partner-card-body {
+  padding: 1.25rem 1.5rem;
+  flex-grow: 1; /* Pushes the action footer safely to the bottom of the card */
+}
+
+.pickup-address {
+  font-size: 0.95rem;
+  color: var(--text-main);
+  line-height: 1.5;
+  margin-top: 0.35rem;
+}
+
+/* Card Action Footer Layout */
+.partner-card-footer {
+  padding: 1.25rem 1.5rem;
+  background-color: #f8fafc;
+  border-top: 1px solid var(--border);
+  border-bottom-left-radius: var(--radius);
+  border-bottom-right-radius: var(--radius);
+}
+
+/* Accept Job CTA Button */
+.accept-job-btn {
+  width: 100%;
+  background-color: var(--primary);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius);
+  padding: 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.accept-job-btn:hover {
+  background-color: var(--primary-hover);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+.accept-job-btn:active {
+  transform: scale(0.98);
+}
+
+/* ==========================================================================
+   12. MY DELIVERIES LOGISTICS PANEL
+   ========================================================================== */
+
+.my-deliveries {
+  max-width: var(--max-width);
+  margin: 2.5rem auto;
+  padding: 0 1.5rem;
+}
+
+.my-deliveries .page-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 2rem;
+  letter-spacing: -0.5px;
+}
+
+/* Empty State Warning Container */
+.my-deliveries .empty-state {
+  text-align: center;
+  background-color: var(--surface);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  padding: 3rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* Deliveries Multi-Card Layout Matrix */
+.deliveries-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Base Workorder Delivery Card */
+.delivery-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition);
+}
+
+.delivery-card:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 10px 15px -3px rgba(15, 23, 42, 0.05);
+}
+
+/* Card Header banner line */
+.delivery-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  background-color: #f8fafc;
+  border-bottom: 1px solid var(--border);
+  border-top-left-radius: var(--radius);
+  border-top-right-radius: var(--radius);
+}
+
+.delivery-card-header h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+/* 2-Column Metadata Info Grid */
+.delivery-card-body {
+  padding: 1.25rem 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.meta-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.meta-row.full-width {
+  grid-column: span 2; /* Stretch vital records across the card */
+}
+
+.delivery-card .meta-label {
+  font-size: 0.725rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+}
+
+.delivery-card .meta-value {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+/* Action Highlights (Phone and collection metrics) */
+.highlight-phone {
+  color: var(--primary) !important;
+}
+
+.payout-text {
+  color: #10b981 !important; /* Green currency notification */
+  font-size: 1.1rem !important;
+  font-weight: 700;
+}
+
+.address-text {
+  font-weight: 500 !important;
+  line-height: 1.4;
+}
+
+/* --------------------------------------------------------------------------
+   Internal Laundry Breakdown Items Checklist
+   -------------------------------------------------------------------------- */
+.delivery-items-panel {
+  margin: 0 1.5rem;
+  padding: 1rem;
+  background-color: var(--background);
+  border-radius: calc(var(--radius) / 1.5);
+  border: 1px solid var(--border);
+}
+
+.delivery-items-panel h4 {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.5px;
+}
+
+.items-mini-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.mini-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-main);
+}
+
+.item-quantity-badge {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  font-weight: 700;
+  font-size: 0.75rem;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+}
+
+/* Footer Container containing the state machine CTA buttons */
+.delivery-card-footer {
+  padding: 1.25rem 1.5rem;
+  margin-top: auto; /* Aligns buttons down evenly */
+}
+
+/* Applies to the component returned by getNextStatusButton(order) */
+.delivery-card-footer button {
+  width: 100%;
+  background-color: var(--primary);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius);
+  padding: 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.delivery-card-footer button:hover {
+  background-color: var(--primary-hover);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+
+/* ==========================================================================
+   13. LANDING / HOME PAGE STYLING
+   ========================================================================== */
+
+.home-page {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   Hero Frame Layout
+   -------------------------------------------------------------------------- */
+.hero-section {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 4rem;
+  padding: 5rem 0;
+  align-items: center;
+}
+
+.hero-badge {
+  display: inline-block;
+  background-color: var(--primary-light);
+  color: var(--primary);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.35rem 1rem;
+  border-radius: 50px;
+  letter-spacing: 0.5px;
+  margin-bottom: 1.25rem;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--text-main);
+  line-height: 1.15;
+  letter-spacing: -1px;
+  margin-bottom: 1.5rem;
+}
+
+.hero-content p {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+  max-width: 520px;
+}
+
+/* Action Button Core Sets */
+.hero-cta-group {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn {
+  display: inline-block;
+  text-decoration: none;
+  padding: 0.85rem 1.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: var(--radius);
+  transition: var(--transition);
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+  box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.2);
+}
+
+.btn-secondary {
+  background-color: #ffffff;
+  color: var(--text-main);
+  border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+  background-color: var(--background);
+  border-color: #cbd5e1;
+}
+
+/* --------------------------------------------------------------------------
+   Steps Block Layout System
+   -------------------------------------------------------------------------- */
+.steps-section {
+  padding: 5rem 0;
+  border-top: 1px solid var(--border);
+}
+
+.home-page .section-title {
+  text-align: center;
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 3rem;
+  letter-spacing: -0.5px;
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+}
+
+.step-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2.25rem;
+  text-align: center;
+  position: relative;
+}
+
+.step-number {
+  width: 40px;
+  height: 40px;
+  background-color: var(--primary-light);
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 1.1rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.25rem auto;
+}
+
+.step-card h3 {
+  font-size: 1.15rem;
+  color: var(--text-main);
+  margin-bottom: 0.75rem;
+}
+
+.step-card p {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* --------------------------------------------------------------------------
+   Split Feature Portals
+   -------------------------------------------------------------------------- */
+.portals-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  padding-bottom: 5rem;
+}
+
+.portal-card {
+  padding: 3rem;
+  border-radius: calc(var(--radius) * 1.5);
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.client-portal {
+  background-color: #ffffff;
+}
+
+.partner-portal {
+  background-color: #0f172a; /* Sophisticated dark background variant for the partner portal */
+  border-color: #1e293b;
+}
+
+.partner-portal h2 { color: #ffffff !important; }
+.partner-portal p { color: #94a3b8 !important; }
+
+.portal-card h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 0.75rem;
+}
+
+.portal-card p {
+  font-size: 1rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 2rem;
+}
+
+.portal-link {
+  text-decoration: none;
+  font-weight: 700;
+  color: var(--primary);
+  font-size: 1rem;
+  transition: var(--transition);
+  width: fit-content;
+}
+
+.portal-link:hover {
+  letter-spacing: 0.5px; /* Slight push animation on link hovers */
+}
+
+.portal-link.partner-text {
+  color: #38bdf8; /* Soft blue color matching dark mode constraints */
+}
+
+/* ==========================================================================
+   14. ADVANCED PURE CSS WASHER & BUBBLE ANIMATION ENGINE
+   ========================================================================== */
+
+.animated-laundry-hub {
+  position: relative;
+  height: 400px;
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  border-radius: calc(var(--radius) * 2.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: inset 0 4px 12px rgba(0, 0, 0, 0.02);
+}
+
+/* --------------------------------------------------------------------------
+   Washing Machine Body Setup
+   -------------------------------------------------------------------------- */
+.washing-machine {
+  width: 180px;
+  height: 240px;
+  background: #ffffff;
+  border: 4px solid #cbd5e1;
+  border-radius: 16px;
+  box-shadow: 0 20px 25px -5px rgba(15, 23, 42, 0.1), 0 10px 10px -5px rgba(15, 23, 42, 0.04);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  animation: machineVibrate 0.3s linear infinite; /* Subtle realistic wash vibration */
+  z-index: 2;
+}
+
+/* Dashboard Top Control Rail */
+.control-panel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #f1f5f9;
+  padding-bottom: 10px;
+}
+
+.led-display {
+  background-color: #0f172a;
+  color: #38bdf8; /* Digital cyan glow */
+  font-family: monospace;
+  font-size: 0.75rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.dial {
+  width: 14px;
+  height: 14px;
+  background: #94a3b8;
+  border-radius: 50%;
+  border: 2px solid #cbd5e1;
+}
+
+/* Glass Door Portal Frame */
+.washer-door {
+  width: 140px;
+  height: 140px;
+  background: #e2e8f0;
+  border: 8px solid #94a3b8;
+  border-radius: 50%;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inner 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Internal Drum containing water & clothes */
+.washer-drum {
+  width: 100%;
+  height: 100%;
+  background: #3b82f6; /* Water deep blue */
+  position: relative;
+  border-radius: 50%;
+  animation: drumSpin 4s linear infinite; /* Keeps clothes tumbling */
+}
+
+.water-swirl {
+  position: absolute;
+  width: 130%;
+  height: 130%;
+  top: -15%;
+  left: -15%;
+  border: 6px dashed rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+}
+
+/* Clothes mapping elements inside drum loop */
+.clothing-item {
+  position: absolute;
+  font-size: 1.5rem;
+}
+.clothing-1 { top: 20px; left: 20px; transform: rotate(15deg); }
+.clothing-2 { bottom: 25px; right: 25px; transform: rotate(-45deg); }
+
+
+/* --------------------------------------------------------------------------
+   Floating Ambient Suds/Bubbles
+   -------------------------------------------------------------------------- */
+.bubble {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(37, 99, 235, 0.15);
+  border-radius: 50%;
+  bottom: -20px;
+  animation: floatBubble 7s linear infinite;
+  z-index: 1;
+}
+
+.bubble-1 { width: 30px; height: 30px; left: 15%; animation-duration: 6s; }
+.bubble-2 { width: 15px; height: 15px; left: 30%; animation-duration: 8s; animation-delay: 2s; }
+.bubble-3 { width: 22px; height: 22px; right: 20%; animation-duration: 7s; animation-delay: 1s; }
+.bubble-4 { width: 12px; height: 12px; right: 35%; animation-duration: 5s; animation-delay: 3.5s; }
+
+.bubble-5 { width: 12px; height: 12px; left: 50%; animation-duration: 6s; }
+.bubble-6 { width: 8px; height: 8px; left: 50%; animation-duration: 8s; animation-delay: 2s; }
+.bubble-7 { width: 5px; height: 5px; right: 50%; animation-duration: 7s; animation-delay: 1s; }
+.bubble-8 { width: 2px; height: 2px; right: 50%; animation-duration: 5s; animation-delay: 3.5s; }
+
+/* --------------------------------------------------------------------------
+   Floating Dynamic Live Notification Tag
+   -------------------------------------------------------------------------- */
+.live-status-badge {
+  position: absolute;
+  top: 35px;
+  right: 35px;
+  background: #ffffff;
+  padding: 0.65rem 1rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 3;
+  animation: floatingCard 4s ease-in-out infinite;
+}
+
+.live-status-badge p {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #10b981; /* Emerald active green */
+  border-radius: 50%;
+  position: relative;
+}
+
+.pulse-dot::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: #10b981;
+  border-radius: 50%;
+  animation: beaconPulse 1.5s ease-out infinite;
+}
+
+
+/* ==========================================================================
+   15. INFORMATIONAL PAGES & LEGAL BLOCKS (ABOUT, CONTACT, PRIVACY)
+   ========================================================================== */
+
+.info-content-block {
+  padding: 5rem 0;
+  border-top: 1px solid var(--border);
+  background-color: var(--surface);
+}
+
+/* Alternate backgrounds slightly to give a clean layout layout flow */
+.contact-panel {
+  background-color: #f8fafc; /* Soft grey tint */
+}
+
+.info-inner {
+  max-width: 800px; /* Limits prose text line width for excellent reading ergonomics */
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.section-mini-tag {
+  display: inline-block;
+  color: var(--primary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+}
+
+.info-inner h2 {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.5px;
+  margin-bottom: 1.5rem;
+}
+
+.info-inner h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 1rem;
+}
+
+.lead-text {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: var(--text-main);
+  margin-bottom: 1.5rem;
+}
+
+.info-inner p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+}
+
+/* Perks Container for About Box */
+.perks-box {
+  background-color: var(--background);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.75rem 2rem;
+  margin: 2rem 0;
+}
+
+.styled-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.styled-list li {
+  position: relative;
+  padding-left: 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-main);
+}
+
+/* Pure CSS clean list accent bullets */
+.styled-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #10b981;
+  font-weight: 700;
+}
+
+/* Contact Details Cards */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.contact-meta-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+}
+
+.contact-meta-card h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--background);
+  padding-bottom: 0.5rem;
+}
+
+.contact-meta-card p, .contact-meta-card address {
+  font-size: 0.9rem;
+  font-style: normal;
+  line-height: 1.5;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.contact-meta-card a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.form-notice {
+  font-size: 0.85rem !important;
+  text-align: center;
+  font-style: italic;
+}
+
+/* Privacy Legal Structures */
+.last-updated {
+  font-size: 0.85rem !important;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-top: -1rem;
+  margin-bottom: 2rem !important;
+}
+
+.policy-group {
+  margin-bottom: 2rem;
+}
+
+.policy-group a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+/* ==========================================================================
+   16. FOOTER ENGINE WITH ACTION TRIGGER HOOKS
+   ========================================================================== */
+
+.global-site-footer {
+  background-color: #0f172a; /* Dark solid brand slate color */
+  color: #ffffff;
+  padding: 4rem 1.5rem 2rem 1.5rem;
+  border-top: 1px solid #1e293b;
+}
+
+.footer-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 3rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid #1e293b;
+}
+
+.footer-brand-side {
+  max-width: 360px;
+}
+
+.footer-logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.footer-logo span {
+  color: #38bdf8; /* Accent light-blue dot */
+}
+
+.footer-brand-side p {
+  font-size: 0.9rem;
+  color: #94a3b8;
+  line-height: 1.5;
+  margin-top: 1rem;
+}
+
+.footer-links-side h4 {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+  margin-bottom: 1.25rem;
+}
+
+.footer-action-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* Clean transparent button components mimicking native anchor styling links */
+.f-link-btn {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-align: left;
+  padding: 0;
+  cursor: pointer;
+  transition: var(--transition);
+  width: fit-content;
+}
+
+.f-link-btn:hover {
+  color: #38bdf8;
+  transform: translateX(2px);
+}
+
+.footer-copyright {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding-top: 1.5rem;
+  text-align: center;
+}
+
+.footer-copyright p {
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+
+/* ==========================================================================
+   17. SERVICES PAGE STYLING LAYOUT
+   ========================================================================= */
+
+.services-page {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+}
+
+/* Page Intro Header Banner */
+.services-header {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 4rem auto;
+}
+
+.services-tag {
+  display: inline-block;
+  background-color: var(--primary-light);
+  color: var(--primary);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.35rem 1rem;
+  border-radius: 50px;
+  letter-spacing: 0.5px;
+  margin-bottom: 1rem;
+}
+
+.services-header h1 {
+  font-size: 2.75rem;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.5px;
+  margin-bottom: 1rem;
+}
+
+.services-header p {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+/* Services Detailed Cards Grid */
+.services-main-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-bottom: 5rem;
+}
+
+.service-detail-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) * 1.5);
+  padding: 2.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: var(--transition);
+}
+
+.service-detail-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.04);
+  border-color: #cbd5e1;
+}
+
+/* Card Header Meta Indicators */
+.service-icon-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.s-emoji {
+  font-size: 2rem;
+  background-color: var(--background);
+  width: 54px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+}
+
+.s-time {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #64748b;
+  background-color: #f1f5f9;
+  padding: 0.25rem 0.65rem;
+  border-radius: 6px;
+}
+
+.service-detail-card h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 0.75rem;
+}
+
+.service-detail-card p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+}
+
+/* Bottom Pricing Matrix Action Bar */
+.service-pricing-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--background);
+  padding-top: 1.5rem;
+  margin-top: auto;
+}
+
+.price-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.price-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.price-amount {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-top: 0.15rem;
+}
+
+.service-card-btn {
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 700;
+  background-color: var(--primary);
+  color: #ffffff;
+  padding: 0.65rem 1.25rem;
+  border-radius: var(--radius);
+  transition: var(--transition);
+}
+
+.service-card-btn:hover {
+  background-color: var(--primary-hover);
+}
+
+/* Trust Operations Banner Frame */
+.services-trust-banner {
+  background: linear-gradient(135deg, #f8fafc 0%, #eff6ff 100%);
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) * 2);
+  padding: 3.5rem 2rem;
+  text-align: center;
+}
+
+.services-trust-banner h2 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 0.5rem;
+}
+
+.services-trust-banner p {
+  color: var(--text-muted);
+  margin-bottom: 2.5rem;
+  font-size: 1rem;
+}
+
+.trust-badges-row {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.t-badge {
+  background-color: #ffffff;
+  border: 1px solid var(--border);
+  padding: 0.65rem 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-main);
+  border-radius: 50px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+}
+
+
+/* ==========================================================================
+   MOBILE BREAKPOINTS
+   ========================================================================== */
+@media (max-width: 640px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .footer-container {
+    flex-direction: column;
+    gap: 2rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   KEYFRAME TIMELINES
+   -------------------------------------------------------------------------- */
+
+/* Standard continuous 360 rotation for the washer cycle */
+@keyframes drumSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Upward drifting motion tracking bubbles with structural fading */
+@keyframes floatBubble {
+  0% {
+    transform: translateY(0) scale(0.8);
+    opacity: 0;
+  }
+  10% { opacity: 1; }
+  90% { opacity: 0.8; }
+  100% {
+    transform: translateY(-450px) scale(1.2);
+    opacity: 0;
+  }
+}
+
+/* Subtle shaking structural cycle for the washer core */
+@keyframes machineVibrate {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(0.5px, -0.5px) rotate(0.1deg); }
+  50% { transform: translate(-0.5px, 0.5px) rotate(-0.1deg); }
+  75% { transform: translate(0.5px, 0.5px) rotate(0deg); }
+}
+
+/* Floating engine for the status badge card */
+@keyframes floatingCard {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* Radial pulse emitter for the active monitoring dot */
+@keyframes beaconPulse {
+  0% { transform: scale(1); opacity: 0.7; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+
+/* ==========================================================================
+   MOBILE RESPONSIVE BREAKPOINTS
+   ========================================================================== */
+@media (max-width: 992px) {
+  .booking-layout {
+    grid-template-columns: 1fr; /* Stack items list above checkout box */
+    gap: 2rem;
+  }
+  
+  .cart-summary {
+    position: static; /* Removes sticky pinning on smaller layouts */
+  }
+
+  .hero-section {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding: 3rem 0;
+    gap: 2rem;
+  }
+  
+  .hero-content p {
+    margin: 0 auto 2rem auto;
+  }
+  
+  .hero-cta-group {
+    justify-content: center;
+  }
+  
+  .steps-grid, .portals-section {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .hero-content h1 {
+    font-size: 2.25rem;
+  }
+
+    .services-main-grid {
+    grid-template-columns: 1fr; /* Stack into single column grid on tablet/mobile screens */
+    gap: 1.5rem;
+  }
+}
+
+/* ==========================================================================
+   18. PREMIUM VORTEX LAUNDRY LOADER COMPONENT
+   ========================================================================== */
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  font-family: inherit;
+}
+
+/* Variant 1: Spans the complete device screen space (Useful during page transitions) */
+.fullscreen-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px); /* Modern iOS-style background blur */
+  z-index: 9999; /* Positions above all page elements */
+}
+
+/* Variant 2: Self-contained inside parent elements (Useful inside tables or buttons) */
+.inline-loader {
+  padding: 3rem 1.5rem;
+  width: 100%;
+}
+
+/* Spinner Chassis Frame */
+.laundry-spinner-wrapper {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Outer Spinning Water Vortex Ring */
+.vortex-ring {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 4px solid #eff6ff; /* Soft underlying water blue track */
+  border-top: 4px solid var(--primary, #3b82f6); /* Primary action track */
+  border-right: 4px solid #60a5fa;
+  border-radius: 50%;
+  animation: vortexSpin 1s cubic-bezier(0.55, 0.05, 0.675, 0.19) infinite;
+}
+
+/* Center Core floating laundry element */
+.bubble-core {
+  font-size: 1.75rem;
+  z-index: 2;
+  animation: heartPulse 1.5s ease-in-out infinite alternate;
+}
+
+/* Floating Ambient Micro-Suds */
+.mini-sud {
+  position: absolute;
+  background-color: rgba(56, 189, 248, 0.2); /* Sky blue tint */
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  border-radius: 50%;
+}
+
+.sud-1 {
+  width: 12px;
+  height: 12px;
+  top: -5px;
+  left: 20px;
+  animation: sudOrbit 2.5s linear infinite;
+}
+
+.sud-2 {
+  width: 8px;
+  height: 8px;
+  bottom: -2px;
+  right: 15px;
+  animation: sudOrbit 3s linear infinite reverse;
+}
+
+/* Core Typography Tracker Label */
+.loading-text {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-main, #1e293b);
+  letter-spacing: 0.2px;
+  margin: 0;
+  animation: fadePulse 1.5s ease-in-out infinite alternate;
+}
+
+/* ==========================================================================
+   LOADER ANIMATION BLUEPRINTS
+   ========================================================================== */
+
+/* Accelerating whirlpool spin rotation for the outer ring */
+@keyframes vortexSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Elastic scale pulsing for the core icon */
+@keyframes heartPulse {
+  0% { transform: scale(0.9); }
+  100% { transform: scale(1.1); }
+}
+
+/* Fading text effect that creates a dynamic loading sequence */
+@keyframes fadePulse {
+  0% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+/* Floating dynamic satellite orbits for the tiny suds */
+@keyframes sudOrbit {
+  0% { transform: rotate(0deg) translateX(45px) rotate(0deg); }
+  100% { transform: rotate(360deg) translateX(45px) rotate(-360deg); }
+}
+
+/* ==========================================================================
+   19. ACCENTED GLASSMORPHIC POPUP / MODAL ENGINE
+   ========================================================================== */
+
+/* Fullscreen Blurred Backdrop Overlay */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(15, 23, 42, 0.4); /* Slate translucent background overlay */
+  backdrop-filter: blur(6px); /* Sophisticated native system blur */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  z-index: 10000; /* Stays fixed above loaders and regular application page layers */
+}
+
+/* Base Modal Container Design */
+.popup-card {
+  background-color: #ffffff;
+  border-radius: calc(var(--radius) * 2);
+  width: 100%;
+  max-width: 400px;
+  padding: 2.5rem 2rem 2rem 2rem;
+  text-align: center;
+  box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.2);
+  border: 1px solid rgba(241, 245, 249, 0.8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Center Structural Emoji Badge */
+.popup-icon-circle {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  font-size: 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  box-shadow: inset 0 -4px 10px rgba(0, 0, 0, 0.03);
+}
+
+/* Typography Details */
+.popup-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.3px;
+  margin: 0 0 0.5rem 0;
+}
+
+.popup-message {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #64748b;
+  margin: 0 0 2rem 0;
+}
+
+/* Master Action Button Structural Framework */
+.popup-action-btn {
+  width: 100%;
+  padding: 0.85rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.popup-action-btn:hover {
+  transform: translateY(-1px);
+}
+
+.popup-action-btn:active {
+  transform: translateY(1px);
+}
+
+/* --------------------------------------------------------------------------
+   STATE DRIVEN VARIANTS (Success, Error, Info, Default)
+   -------------------------------------------------------------------------- */
+
+/* Variant A: Success Token */
+.popup-card.success .popup-icon-circle {
+  background-color: #ecfdf5; /* Emerald soft fill */
+  border: 1px solid #a7f3d0;
+}
+.popup-card.success .popup-action-btn {
+  background-color: #10b981;
+  color: #ffffff;
+}
+.popup-card.success .popup-action-btn:hover {
+  background-color: #059669;
+  box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.3);
+}
+
+/* Variant B: Error Token */
+.popup-card.error .popup-icon-circle {
+  background-color: #fef2f2; /* Rose soft fill */
+  border: 1px solid #fecaca;
+}
+.popup-card.error .popup-action-btn {
+  background-color: #ef4444;
+  color: #ffffff;
+}
+.popup-card.error .popup-action-btn:hover {
+  background-color: #dc2626;
+  box-shadow: 0 10px 15px -3px rgba(239, 68, 68, 0.3);
+}
+
+/* Variant C: Info Token */
+.popup-card.info .popup-icon-circle {
+  background-color: #eff6ff; /* Ocean blue fill matching QuickWash colors */
+  border: 1px solid #bfdbfe;
+}
+.popup-card.info .popup-action-btn {
+  background-color: #3b82f6;
+  color: #ffffff;
+}
+.popup-card.info .popup-action-btn:hover {
+  background-color: #2563eb;
+  box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.3);
+}
+
+/* Variant D: Default / Notification Token */
+.popup-card.default .popup-icon-circle {
+  background-color: #f8fafc; /* Minimalist neutral slate fill */
+  border: 1px solid #e2e8f0;
+}
+.popup-card.default .popup-action-btn {
+  background-color: #0f172a;
+  color: #ffffff;
+}
+.popup-card.default .popup-action-btn:hover {
+  background-color: #1e293b;
+  box-shadow: 0 10px 15px -3px rgba(15, 23, 42, 0.3);
+}
+
+
+
+/* ==========================================================================
+   20. PREMIUM CLIENT DASHBOARD LAYOUT
+   ========================================================================== */
+
+.dashboard-wrapper {
+  max-width: var(--max-width, 1200px);
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+  font-family: inherit;
+}
+
+/* Welcome Profile Card Banner Frame */
+.dashboard-hero-card {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); /* Deep luxurious dark slate gradient */
+  border-radius: calc(var(--radius, 12px) * 1.5);
+  padding: 2.5rem;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.15);
+  margin-bottom: 3rem;
+}
+
+/* Dynamic CSS Circular Character Avatar */
+.hero-profile-avatar {
+  width: 72px;
+  height: 72px;
+  background-color: #38bdf8; /* Soft blue focus color matching bubbles */
+  color: #0f172a;
+  font-size: 2rem;
+  font-weight: 800;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3);
+  flex-shrink: 0;
+}
+
+/* Profile Metadata Text Blocks */
+.hero-welcome-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.dashboard-mini-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #38bdf8;
+}
+
+.hero-welcome-text h1 {
+  font-size: 2.25rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin: 0;
+  color: #ffffff;
+}
+
+.hero-welcome-text p {
+  font-size: 1rem;
+  color: #94a3b8; /* Muted contrast slate text line */
+  margin: 0;
+  line-height: 1.5;
+  max-width: 650px;
+}
+
+/* Dashboard Core Content Grid Block */
+.dashboard-content-grid {
+  width: 100%;
+}
+
+/* Orders Panel Box */
+.orders-panel-card {
+  background-color: var(--surface, #ffffff);
+  border: 1px solid var(--border, #e2e8f0);
+  border-radius: calc(var(--radius, 12px) * 1.5);
+  padding: 2.25rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+}
+
+.panel-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--background, #f8fafc);
+  padding-bottom: 1.25rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.panel-header-row h2 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--text-main, #0f172a);
+  margin: 0;
+}
+
+/* Live Operational Tracking Pulse Badge */
+.live-pulse-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #10b981; /* Emerald green */
+  background-color: #ecfdf5;
+  padding: 0.35rem 0.85rem;
+  border-radius: 50px;
+}
+
+.pulse-core {
+  width: 8px;
+  height: 8px;
+  background-color: #10b981;
+  border-radius: 50%;
+  position: relative;
+}
+
+/* CSS Keyframe Pulse animation bubble ring */
+.pulse-core::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #10b981;
+  animation: liveRipple 1.6s infinite ease-in-out;
+  top: 0;
+  left: 0;
+}
+
+/* ==========================================================================
+   21. PARTNER OPERATIONS & DELIVERY STYLING LAYOUT
+   ========================================================================= */
+
+.deliveries-container {
+  max-width: var(--max-width, 1200px);
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+}
+
+/* Page Intro Top Header Block */
+.deliveries-header-block {
+  margin-bottom: 3rem;
+}
+
+.partner-mini-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  background-color: #f1f5f9;
+  color: #475569;
+  padding: 0.35rem 0.75rem;
+  border-radius: 6px;
+  letter-spacing: 0.5px;
+}
+
+.deliveries-header-block h1 {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0.5rem 0;
+  letter-spacing: -0.5px;
+}
+
+.deliveries-header-block p {
+  color: #64748b;
+  font-size: 1.05rem;
+  margin: 0;
+}
+
+/* Operational Grid Layout definitions */
+.deliveries-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 2rem;
+}
+
+/* Core Structural Ticket Card */
+.delivery-card {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.delivery-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 20px -3px rgba(15, 23, 42, 0.06);
+}
+
+/* Top Heading Header Strip */
+.delivery-card-header {
+  background-color: #f8fafc;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.delivery-card-header h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+/* High Contrast State Badges */
+.status-badge {
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  padding: 0.25rem 0.65rem;
+  border-radius: 50px;
+}
+
+.status-badge.assigned { background-color: #fef3c7; color: #d97706; }
+.status-badge.picked-up { background-color: #e0f2fe; color: #0284c7; }
+.status-badge.washing { background-color: #fae8ff; color: #c084fc; }
+.status-badge.out-for-delivery { background-color: #e0e7ff; color: #4f46e5; }
+.status-badge.delivered { background-color: #d1fae5; color: #059669; }
+
+/* Mid-Card Meta Profile Field Maps */
+.delivery-card-body {
+  padding: 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.meta-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.meta-row.full-width {
+  grid-column: span 2;
+}
+
+.meta-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #94a3b8;
+  letter-spacing: 0.2px;
+}
+
+.meta-value {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.highlight-phone {
+  color: #2563eb;
+  font-weight: 700;
+}
+
+.address-text {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: #475569;
+}
+
+/* Pricing Section Accented Frame Highlight */
+.pricing-highlight-box {
+  background-color: #f8fafc;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border-left: 3px solid #0f172a;
+  margin-top: 0.5rem;
+}
+
+.payout-text {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+/* Lower Section Item Manifest List */
+.delivery-items-panel {
+  padding: 0 1.5rem 1.5rem 1.5rem;
+  background-color: #ffffff;
+}
+
+.delivery-items-panel h4 {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: #64748b;
+  margin: 0 0 0.75rem 0;
+  font-weight: 700;
+}
+
+.items-mini-list {
+  background-color: #f8fafc;
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  max-height: 120px;
+  overflow-y: auto;
+  border: 1px dashed #e2e8f0;
+}
+
+.mini-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.4rem 0;
+  font-size: 0.85rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.mini-list-item:last-child {
+  border-bottom: none;
+}
+
+.item-name {
+  color: #475569;
+  font-weight: 500;
+}
+
+.item-quantity-badge {
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+/* Footer Operational State Trigger Action Controls */
+.delivery-card-footer {
+  padding: 1.25rem 1.5rem;
+  border-top: 1px solid #e2e8f0;
+  background-color: #f8fafc;
+  margin-top: auto;
+}
+
+.partner-action-btn {
+  width: 100%;
+  padding: 0.85rem;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #ffffff;
+  cursor: pointer;
+  transition: transform 0.1s ease, filter 0.2s ease;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.partner-action-btn:hover {
+  filter: brightness(0.92);
+}
+
+.partner-action-btn:active {
+  transform: scale(0.98);
+}
+
+/* Color Variant Maps matching Workflow Progression branches */
+.btn-assigned { background-color: #d97706; }
+.btn-wash { background-color: #0284c7; }
+.btn-delivery { background-color: #4f46e5; }
+.btn-success { background-color: #10b981; }
+
+/* Completed State Frame */
+.completed-order-banner {
+  background-color: #ecfdf5;
+  border: 1px dashed #a7f3d0;
+  color: #047857;
+  text-align: center;
+  padding: 0.75rem;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+/* Empty Queue Vector Blocks Frame */
+.empty-state-card {
+  background-color: #ffffff;
+  border: 2px dashed #cbd5e1;
+  border-radius: 16px;
+  padding: 5rem 2rem;
+  text-align: center;
+  max-width: 500px;
+  margin: 4rem auto 0 auto;
+}
+
+.empty-state-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.empty-state-card h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 0.5rem 0;
+}
+
+.empty-state-card p {
+  color: #64748b;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   22. JOB FEED PARTNER DASHBOARD VIEWPORTS
+   ========================================================================== */
+
+.partner-dashboard {
+  max-width: var(--max-width, 1200px);
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+}
+
+/* Welcome Profile Card Banner Frame matching Client console properties */
+.dashboard-header {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  border-radius: calc(var(--radius, 12px) * 1.5);
+  padding: 2.5rem;
+  color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.15);
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.dashboard-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #38bdf8;
+  background-color: rgba(56, 189, 248, 0.1);
+  padding: 0.35rem 0.75rem;
+  border-radius: 6px;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+.dashboard-header h1 {
+  font-size: 2.25rem;
+  color: white;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin: 0 0 0.35rem 0;
+}
+
+.dashboard-subtitle {
+  font-size: 1rem;
+  color: #94a3b8;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Live Operational Feed Pulse Badging */
+.stat-mini-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  padding: 0.4rem 0.9rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.pill-dot.glow {
+  width: 8px;
+  height: 8px;
+  background-color: #10b981;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #10b981;
+}
+
+/* Operational Feed Header Metrics */
+.section-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 1.5rem;
+}
+
+/* Marketplace Job Allocation System Grid layout */
+.partner-orders-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Individual Job Offer Card layout */
+.partner-order-card {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden;
+}
+
+.partner-order-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 20px -3px rgba(15, 23, 42, 0.06);
+  border-color: #cbd5e1;
+}
+
+/* Job Card Upper Section Content Details */
+.partner-card-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid #f1f5f9;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: #f8fafc;
+}
+
+.meta-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #94a3b8;
+  letter-spacing: 0.5px;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.client-info h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+.payout-info {
+  text-align: right;
+}
+
+.payout-amount {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #10b981; /* High contrast green earnings accent */
+}
+
+/* Address Card Inner Block */
+.partner-card-body {
+  padding: 1.5rem;
+  flex-grow: 1;
+}
+
+.pickup-address {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #475569;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Bottom Confirmation Execution Blocks */
+.partner-card-footer {
+  padding: 1.25rem 1.5rem;
+  background-color: #f8fafc;
+  border-top: 1px solid #f1f5f9;
+}
+
+.accept-job-btn {
+  width: 100%;
+  padding: 0.85rem;
+  background-color: #0f172a; /* Solid dark focus brand color */
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+  box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.05);
+}
+
+.accept-job-btn:hover {
+  background-color: #3b82f6; /* Switches to action blue on activation intent */
+}
+
+.accept-job-btn:active {
+  transform: scale(0.98);
+}
+
+/* Empty State Queue Callout Frame */
+.empty-feed-card {
+  background-color: #ffffff;
+  border: 2px dashed #e2e8f0;
+  border-radius: 16px;
+  padding: 4.5rem 2rem;
+  text-align: center;
+  max-width: 480px;
+  margin: 3rem auto 0 auto;
+}
+
+.empty-feed-icon {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.empty-feed-card h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 0.35rem 0;
+}
+
+.empty-feed-card p {
+  font-size: 0.95rem;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   23. CUSTOMER ORDER CANCELLATION ENGINE ACTIONS
+   ========================================================================== */
+
+.order-cancellation-control-zone {
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px dashed #e2e8f0;
+  width: 100%;
+}
+
+/* Master Active Cancel Request Button */
+.client-cancel-order-btn {
+  width: 100%;
+  background-color: #ffffff;
+  color: #ef4444; /* High clarity emergency coral red text lines */
+  border: 1px solid #fca5a5;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.client-cancel-order-btn:hover {
+  background-color: #fef2f2; /* Soft clean danger light fill layer */
+  border-color: #ef4444;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px -1px rgba(239, 68, 68, 0.08);
+}
+
+.client-cancel-order-btn:active {
+  transform: translateY(0);
+}
+
+/* Operational Lock Warning Banner Box */
+.cancellation-locked-notice {
+  background-color: #f8fafc; /* Neutral clean slate gray fill structure */
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 0.85rem 1.25rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  text-align: left;
+}
+
+.lock-icon {
+  font-size: 1.1rem;
+  background-color: #e2e8f0;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.notice-content-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.notice-content-text h5 {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #475569; /* Slate dark title profile header lines */
+  margin: 0;
+}
+
+.notice-content-text p {
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: #94a3b8; /* Muted gray helpful explanatory documentation layout text strings */
+  margin: 0;
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   MOBILE MEDIA VIEW ADJUSTMENTS
+   ========================================================================== */
+@media (max-width: 640px) {
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2rem 1.5rem;
+  }
+  .dashboard-header h1 {
+    font-size: 1.75rem;
+  }
+}
+
+/* Responsive adjustment definitions */
+@media (max-width: 480px) {
+  .deliveries-grid {
+    grid-template-columns: 1fr;
+  }
+  .delivery-card-body {
+    grid-template-columns: 1fr;
+  }
+  .meta-row.full-width {
+    grid-column: span 1;
+  }
+}
+
+/* ==========================================================================
+   DASHBOARD KEYFRAME ANIMATIONS & RESPONSIVE DESIGN
+   ========================================================================== */
+
+@keyframes liveRipple {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(3); opacity: 0; }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column; /* Stacks logo above the links */
+    gap: 1rem;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .navbar .nav-links {
+    flex-wrap: wrap;       /* Allows buttons to wrap safely if screen is tiny */
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .navbar .nav-links a, 
+  .navbar .logout-btn {
+    font-size: 0.9rem;    /* Slightly smaller text for mobile spacing */
+    padding: 0.4rem 0.8rem;
+  }
+  
+  /* Make the register/auth buttons stand out neatly side-by-side on mobile */
+  .navbar .nav-links a[href="/register"] {
+    padding: 0.4rem 0.8rem;
+  }
+
+  .footer {
+    padding: 3rem 1.5rem 1.5rem 1.5rem;
+  }
+
+  .footer-container {
+    grid-template-columns: 1fr; /* Flattens grid columns to stacked blocks */
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .footer-brand p {
+    max-width: 100%; /* Allows paragraph to stretch nicely on mobile viewports */
+  }
+
+  .footer-links {
+    align-items: center; /* Centers navigation text link rows */
+  }
+
+  .footer-links a:hover {
+    transform: none; /* Disables slide translation on mobile tap targets */
+  }
+
+  .footer-bottom {
+    margin-top: 2rem;
+  }
+
+  .checkout-layout {
+    grid-template-columns: 1fr; /* Force vertical single-stack array */
+    gap: 1.5rem;
+  }
+  
+  .checkout-summary-card,
+  .checkout-form-card {
+    padding: 1.5rem;
+  }
+    .dashboard-hero-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem 1.5rem;
+    gap: 1.25rem;
+  }
+  
+  .hero-welcome-text h1 {
+    font-size: 1.75rem;
+  }
+  
+  .panel-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 576px) {
+  .order-header {
+    flex-direction: row;
+    align-items: center;
+    padding: 1rem;
+  }
+
+  .order-details {
+    padding: 1rem;
+  }
+
+  .price-item {
+    text-align: left;
+    width: 100%; /* Forces price to break onto its own clean line below on tiny screens */
+    border-top: 1px dashed var(--border);
+    padding-top: 0.75rem;
+    margin-top: 0.25rem;
+  }
+}
+
+
+/* Mobile Adjustments for forms */
+@media (max-width: 480px) {
+  .register, .login {
+    margin: 1.5rem auto;
+    padding: 1.5rem;
+    border: none; /* Flat style on tiny viewports looks much cleaner */
+    box-shadow: none;
+    background-color: transparent; /* Seamless blend on mobile backgrounds */
+  }
+
+  .laundry-item-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .quantity-controls {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .qty-count {
+    flex-grow: 1;
+  }
+
+  .partner-dashboard {
+    margin: 1.5rem auto;
+  }
+  
+  .dashboard-header h1 {
+    font-size: 1.75rem;
+  }
+  
+  .partner-orders-grid {
+    grid-template-columns: 1fr; /* Drop cleanly down to basic column cards on single columns */
+  }
+
+  .deliveries-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .delivery-card-body {
+    grid-template-columns: 1fr; /* Drop internal matrix columns to single layout paths */
+  }
+  
+  .meta-row.full-width {
+    grid-column: span 1;
+  }
+}
