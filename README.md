@@ -19,7 +19,6 @@ The application streamlines the entire laundry workflow from booking and pickup 
 * Quantity Management
 * Checkout and Order Placement
 * Cash on Delivery (COD) Support
-* Online Payment Ready (Razorpay Integration)
 * View Order History
 * Track Order Status
 * Cancel Orders Before Pickup
@@ -63,7 +62,6 @@ The application streamlines the entire laundry workflow from booking and pickup 
 * React.js
 * React Router DOM
 * Axios
-* React Toastify
 * CSS3
 
 ### Backend
