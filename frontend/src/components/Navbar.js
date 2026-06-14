@@ -1,8 +1,7 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Popup from "./Popup";
-
 
 const Navbar = () => {
   const token = localStorage.getItem("token");
@@ -30,15 +29,20 @@ const Navbar = () => {
   const user = JSON.parse(localStorage.getItem("user") || "null");
 
   return (
-    <><Popup
-      show={popup.show}
-      title={popup.title}
-      message={popup.message}
-      type={popup.type}
-      onClose={() => setPopup({
-        ...popup,
-        show: false,
-      })} /><nav className="navbar">
+    <>
+      <Popup
+        show={popup.show}
+        title={popup.title}
+        message={popup.message}
+        type={popup.type}
+        onClose={() =>
+          setPopup({
+            ...popup,
+            show: false,
+          })
+        }
+      />
+      <nav className="navbar">
         <div className="logo">QuickWash</div>
 
         <div className="nav-links">
@@ -57,6 +61,8 @@ const Navbar = () => {
             <Link to="/partner-dashboard">Deliveries</Link>
           )}
 
+          {user?.role === "admin" && <Link to="/admin">Admin Panel</Link>}
+
           {token ? (
             <button className="logout-btn" onClick={logout}>
               Logout
@@ -68,7 +74,8 @@ const Navbar = () => {
             </>
           )}
         </div>
-      </nav></>
+      </nav>
+    </>
   );
 };
 

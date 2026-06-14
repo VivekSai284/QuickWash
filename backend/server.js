@@ -18,6 +18,14 @@ app.use('/auth', authRoutes);
 app.use('/items', laundryRoutes)
 app.use('/orders', orderRoutes)
 
+const adminRoutes =
+require("./routes/adminRoutes");
+
+app.use(
+  "/admin",
+  adminRoutes
+);
+
 app.get('/', (req, res) => {
     res.send("Server running...")
 })

@@ -2091,6 +2091,426 @@ code {
 }
 
 
+
+/* ==========================================================================
+   24. ENTERPRISE ADMIN COMMAND SYSTEM THEME
+   ========================================================================== */
+
+.admin-container {
+  max-width: var(--max-width, 1300px);
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+  font-family: inherit;
+  color: #1e293b;
+}
+
+/* Structural Header Dashboard Elements */
+.admin-header-strip {
+  margin-bottom: 2.5rem;
+}
+
+.admin-pill-tag {
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  background-color: #f1f5f9;
+  color: #475569;
+  padding: 0.35rem 0.75rem;
+  border-radius: 6px;
+  letter-spacing: 0.8px;
+}
+
+.admin-header-strip h1 {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #0f172a;
+  margin: 0.5rem 0 0.25rem 0;
+  letter-spacing: -0.75px;
+}
+
+.admin-header-strip p {
+  color: #64748b;
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+/* Modern Data Cards Grid Dashboard Layout */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.stat-card {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1.75rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+}
+
+.card-deco {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+}
+.blue-deco { background-color: #3b82f6; }
+.purple-deco { background-color: #a855f7; }
+.orange-deco { background-color: #f59e0b; }
+.green-deco { background-color: #10b981; }
+
+.sc-label {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  color: #64748b;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+.sc-value {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0.5rem 0 0 0;
+}
+
+/* Two Column Main Hub Grid Distribution Split Framework */
+.admin-split-layout {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.admin-right-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Generic Layout Framework Panel Box */
+.panel-card {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.01);
+}
+
+.panel-card h2 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 1.5rem 0;
+  letter-spacing: -0.2px;
+}
+
+/* Micro Progress Bar Component Track Engine Blocks */
+.metric-bars-holder {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.pr-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #475569;
+  margin-bottom: 0.35rem;
+}
+
+.pr-track {
+  width: 100%;
+  height: 8px;
+  background-color: #f1f5f9;
+  border-radius: 50px;
+  overflow: hidden;
+}
+
+.pr-fill {
+  height: 100%;
+  border-radius: 50px;
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Unified Dynamic Row Listing Items */
+.row-items-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.order-row-item, .partner-leaderboard-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 0.85rem 1.25rem;
+  font-size: 0.9rem;
+}
+
+.or-user {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.or-amt {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+/* Universal Context State Pill Accents Box Mapping */
+.or-badge-pill {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  padding: 0.2rem 0.55rem;
+  border-radius: 50px;
+}
+.or-badge-pill.pending { background-color: #fef3c7; color: #d97706; }
+.or-badge-pill.assigned { background-color: #eff6ff; color: #2563eb; }
+.or-badge-pill.picked-up { background-color: #e0f2fe; color: #0369a1; }
+.or-badge-pill.washing { background-color: #fae8ff; color: #701a75; }
+.or-badge-pill.out-for-delivery { background-color: #e0e7ff; color: #4338ca; }
+.or-badge-pill.delivered { background-color: #d1fae5; color: #065f46; }
+.or-badge-pill.cancelled { background-color: #fef2f2; color: #b91c1c; }
+
+.pl-identity {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.rank-index {
+  font-size: 0.75rem;
+  font-weight: 800;
+  background-color: #0f172a;
+  color: #ffffff;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.delivery-count-badge {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #10b981;
+  background-color: #ecfdf5;
+  padding: 0.25rem 0.55rem;
+  border-radius: 6px;
+}
+
+/* ==========================================================================
+   25. DATA LEDGER NATIVE TABLE INFRASTRUCTURE STYLES
+   ========================================================================== */
+
+.table-responsive-wrapper {
+  overflow-x: auto;
+  padding: 0.5rem 1rem;
+}
+
+.admin-native-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+.admin-native-table th {
+  background-color: #f8fafc;
+  color: #475569;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+  padding: 1.25rem 1rem;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.admin-native-table td {
+  padding: 1.25rem 1rem;
+  border-bottom: 1px solid #f1f5f9;
+  color: #475569;
+}
+
+.admin-native-table tr:hover td {
+  background-color: #f8fafc;
+}
+
+.bold-cell {
+  font-weight: 700;
+  color: #0f172a !important;
+}
+
+.currency-cell {
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.phone-cell {
+  font-family: monospace;
+  font-weight: 600;
+}
+
+.payment-type-cell {
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+/* User Accountability Access Modifiers Badging Framework */
+.role-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+.role-badge.admin { background-color: #fee2e2; color: #ef4444; }
+.role-badge.partner { background-color: #e0f2fe; color: #0284c7; }
+.role-badge.user { background-color: #f1f5f9; color: #475569; }
+
+/* Table Action Buttons Component */
+.table-action-delete-btn {
+  background-color: transparent;
+  color: #ef4444;
+  border: 1px solid #fca5a5;
+  padding: 0.45rem 0.9rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.table-action-delete-btn:hover {
+  background-color: #ef4444;
+  color: #ffffff;
+  border-color: #ef4444;
+}
+
+/* Empty View Alert Callout Line Prompt */
+.empty-table-prompt {
+  text-align: center;
+  color: #94a3b8;
+  padding: 2rem 0;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+
+/* ==========================================================================
+   25. ADMIN SUB-NAVIGATION TAB BAR
+   ========================================================================== */
+
+.admin-sub-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 0.75rem 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+}
+
+/* Informative left grouping label */
+.nav-brand-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #64748b;
+  letter-spacing: 0.5px;
+}
+
+.nav-pulse-dot {
+  width: 6px;
+  height: 6px;
+  background-color: #3b82f6; /* Focus system color */
+  border-radius: 50%;
+}
+
+.nav-links-wrapper {
+  display: flex;
+  gap: 0.75rem;
+}
+
+/* Individual Router Nav Link Components */
+.admin-nav-tab {
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #475569;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 0.55rem 1.1rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Interactive Hover Transformation Layer */
+.admin-nav-tab:hover {
+  color: #0f172a;
+  background-color: #ffffff;
+  border-color: #0f172a;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+}
+
+/* Active Press Click Response */
+.admin-nav-tab:active {
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   MOBILE RESPONSIVE FALLBACKS
+   ========================================================================== */
+@media (max-width: 640px) {
+  .admin-sub-navbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+    padding: 1rem;
+  }
+  
+  .nav-brand-indicator {
+    justify-content: center;
+  }
+
+  .nav-links-wrapper {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .admin-nav-tab {
+    justify-content: center;
+    width: 100%;
+    padding: 0.75rem;
+  }
+}
+
+
+
+
 /* ==========================================================================
    MOBILE RESPONSIVE BREAKPOINTS
    ========================================================================== */
@@ -2131,6 +2551,10 @@ code {
     .services-main-grid {
     grid-template-columns: 1fr; /* Stack into single column grid on tablet/mobile screens */
     gap: 1.5rem;
+  }
+  
+    .admin-split-layout {
+    grid-template-columns: 1fr;
   }
 }
 
