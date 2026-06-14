@@ -15,12 +15,12 @@ const AdminDashboard = () => {
   const fetchStats = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get("http://localhost:5000/admin/stats", {
+      const res = await axios.get("https://quickwash-l49a.onrender.com/admin/stats", {
         headers: { Authorization: token },
       });
 
       const partnerRes = await axios.get(
-        "http://localhost:5000/admin/top-partners",
+        "https://quickwash-l49a.onrender.com/admin/top-partners",
         {
           headers: { Authorization: token },
         },

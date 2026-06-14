@@ -22,6 +22,7 @@ import AdminDashboard from "./pages/AdminDashboard";
 import AdminOrders from "./pages/AdminOrders";
 import AdminPartners from "./pages/AdminPartners";
 import AdminUsers from "./pages/AdminUser";
+import AdminRoute from "./components/AdminRoute";
 
 function App() {
   return (
@@ -77,12 +78,40 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/services" element={<Service />} />
-          <Route path="/admin" element={<AdminDashboard />} />
-          <Route path="/admin/users" element={<AdminUsers />} />
+          <Route
+            path="/admin"
+            element={
+              <AdminRoute>
+                <AdminDashboard />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="/admin/users"
+            element={
+              <AdminRoute>
+                <AdminUsers />
+              </AdminRoute>
+            }
+          />
 
-          <Route path="/admin/orders" element={<AdminOrders />} />
+          <Route
+            path="/admin/orders"
+            element={
+              <AdminRoute>
+                <AdminOrders />
+              </AdminRoute>
+            }
+          />
 
-          <Route path="/admin/partners" element={<AdminPartners />} />
+          <Route
+            path="/admin/partners"
+            element={
+              <AdminRoute>
+                <AdminPartners />
+              </AdminRoute>
+            }
+          />
         </Routes>
         <Footer />
       </BrowserRouter>

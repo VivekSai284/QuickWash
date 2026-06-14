@@ -26,7 +26,7 @@ const AdminPartners =
 
         const res =
           await axios.get(
-            "http://localhost:5000/admin/partners",
+            "https://quickwash-l49a.onrender.com/admin/partners",
             {
               headers: {
                 Authorization:

@@ -23,7 +23,7 @@ const AdminOrders = () => {
 
       const res =
         await axios.get(
-          "http://localhost:5000/admin/orders",
+          "https://quickwash-l49a.onrender.com/admin/orders",
           {
             headers: {
               Authorization:

@@ -23,7 +23,7 @@ const AdminUsers = () => {
 
         const res =
           await axios.get(
-            "http://localhost:5000/admin/users",
+            "https://quickwash-l49a.onrender.com/admin/users",
             {
               headers: {
                 Authorization:
@@ -47,7 +47,7 @@ const AdminUsers = () => {
           );
 
         await axios.delete(
-          `http://localhost:5000/admin/users/${id}`,
+          `https://quickwash-l49a.onrender.com/admin/users/${id}`,
           {
             headers: {
               Authorization:
