@@ -198,6 +198,18 @@ QuickWash/
 
 ---
 
+## Deployment
+
+ - Frontend - Render(Static Site)
+ - Backend - Render(Web Services)
+ - DataBase - MongoDB
+
+Checkout here https://quickwash-u9d0.onrender.com
+
+It will take some time to load the render backend. If it is loading please wait some time.
+
+---
+
 ## Author
 
 Developed as a Full Stack MERN Project demonstrating authentication, role-based access control, order management, delivery workflow management, and administrative operations.
