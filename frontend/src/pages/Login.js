@@ -38,7 +38,9 @@ const Login = () => {
       setTimeout(() => {
         if (response.data.user?.role === "partner") {
         navigate("/partner-dashboard");
-      } else {
+      } else if(response.data.user?.role === "admin") {
+        navigate("/admin");
+      }else{
         navigate("/dashboard");
       }
       }, 3000)
