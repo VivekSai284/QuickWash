@@ -210,6 +210,11 @@ It will take some time to load the render backend. If it is loading please wait 
 
 ---
 
-## Author
+## 👨‍💻 Author
 
-Developed as a Full Stack MERN Project demonstrating authentication, role-based access control, order management, delivery workflow management, and administrative operations.
+**Vivek Sai**
+
+### Connect
+
+- GitHub: https://github.com/VivekSai284
+- LinkedIn: https://linkedin.com/in/viveksai284
