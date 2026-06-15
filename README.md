@@ -208,7 +208,7 @@ It will take some time to load the render backend. If it is loading please wait 
 
 ---
 
-## 👨‍💻 Author
+## Author
 
 **Vivek Sai**
 
