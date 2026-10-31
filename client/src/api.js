@@ -1,5 +1,5 @@
 const BASE = (
-  import.meta.env.VITE_API_URL || "http://localhost:5000/api"
+  import.meta.env.VITE_API_URL || "https://quickwash-new.onrender.com//api"
 ).replace(/\/$/, "");
 export function getToken(role) {
   return localStorage.getItem(`ff_token_${role}`);

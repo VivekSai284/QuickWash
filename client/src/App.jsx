@@ -155,7 +155,7 @@ export default function App() {
   const load = async () => {
     try {
       const base = (
-        import.meta.env.VITE_API_URL || "http://localhost:5000/api"
+        import.meta.env.VITE_API_URL || "https://quickwash-new.onrender.com//api"
       ).replace(/\/$/, "");
       const response = await fetch(base + "/catalog");
       if (!response.ok) throw new Error("Could not load the service catalog");
