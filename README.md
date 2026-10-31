@@ -1,130 +1,236 @@
-# FreshFold — MERN Stack
+ 
+# QuickWash – Online Laundry Booking Platform
 
-FreshFold is a laundry pickup platform with customer and laundry-partner experiences.
+QuickWash is a full-stack laundry service web application built using the MERN stack. It allows customers to book laundry services online, manage their orders, and make payments conveniently.
 
-## Stack
-- React + Vite
-- Node.js + Express
-- MongoDB + Mongoose
-- JWT authentication
-- Email OTP login (demo OTP is returned only when SMTP is not configured)
+The platform connects customers with delivery partners and provides an admin dashboard to manage operations, monitor orders, and oversee the laundry service workflow.
 
-## Requirements
-Node.js 20+ recommended, npm, and a MongoDB Atlas/local MongoDB database.
+## Features
 
-## Run on Windows PowerShell
+### Customer Features
+- Register and log in using email OTP verification.
+- Save mobile number for contact purposes.
+- Browse available laundry services.
+- Place laundry service orders.
+- View order details and track order status.
+- Choose Cash on Delivery (COD) or online payment.
+- Make online payments through Razorpay.
+- View order history.
 
-### 1. Backend
-```powershell
-cd "C:\My Files\Projects\FreshFold-MERN\server"
-Copy-Item .env.example .env
-# Edit .env and set MONGO_URI and JWT_SECRET
-npm install
-npm run dev
+### Delivery Partner Features
+- Partner registration and login.
+- Access the partner dashboard.
+- View assigned orders.
+- Manage order progress.
+- Update order statuses throughout the delivery process.
+
+### Admin Features
+- Dedicated admin access.
+- Manage and monitor orders.
+- View platform order statistics.
+- Oversee delivery operations.
+
+### Authentication and Security
+- Email-based OTP verification.
+- JWT-based authentication.
+- Protected API routes.
+- Role-based access control.
+- Environment variables for sensitive configuration.
+- Backend request validation and error handling.
+- CORS configuration and security middleware.
+
+## Order Workflow
+
+Orders move through the following stages:
+
+1. Pending
+2. Assigned
+3. Picked Up
+4. Washing
+5. Out For Delivery
+6. Delivered
+
+This workflow helps customers and administrators track the progress of every laundry order.
+
+## Technology Stack
+
+| Category | Technologies |
+|---|---|
+| Frontend | React.js, JavaScript, HTML, CSS |
+| Backend | Node.js, Express.js |
+| Database | MongoDB, Mongoose |
+| Authentication | JWT, Email OTP |
+| Email Service | Nodemailer, Gmail SMTP |
+| Payment Gateway | Razorpay |
+| API Testing | Postman |
+| Deployment | Render, Vercel |
+
+## Project Architecture
+
+QuickWash follows a client-server architecture.
+
+- **Frontend:** Provides the user interface for customers, delivery partners, and administrators.
+- **Backend:** Handles authentication, business logic, order management, and payment-related APIs.
+- **Database:** MongoDB stores user information, orders, and application data.
+- **Email Service:** Sends OTP verification emails.
+- **Payment Gateway:** Razorpay handles online payment processing.
+
+## Installation and Setup
+
+### Prerequisites
+
+Make sure you have installed:
+
+- Node.js
+- npm
+- MongoDB Atlas account
+- Git
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/YOUR_USERNAME/QuickWash.git
+cd QuickWash
 ```
-Backend runs at `http://localhost:5000`.
 
-### 2. Frontend (new terminal)
+### 2. Backend Setup
+
+Navigate to the backend directory:
+
 ```powershell
-cd "C:\My Files\Projects\FreshFold-MERN\client"
+cd server
 npm install
-npm run dev
 ```
-Open the Vite URL printed in the terminal, usually `http://localhost:5173`.
 
-## Environment
-`server/.env` should contain your MongoDB connection string, a strong `JWT_SECRET`, and the email SMTP settings below.
-
-## Email OTP setup (Gmail)
-
-The user enters both a mobile number and an email address. FreshFold sends the OTP to the email address; the mobile number remains saved for contacting the customer or laundry partner.
-
-1. Sign in to the Gmail account you created for FreshFold.
-2. Enable 2-Step Verification for that Google account.
-3. Create a Google App Password for Mail. Use the 16-character app password, **not** your normal Gmail password.
-4. In `server/.env`, fill in these settings (keep your existing `MONGO_URI` and `JWT_SECRET`):
+Create a `.env` file in the backend directory.
 
 ```env
+PORT=5000
+NODE_ENV=development
+
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_secure_jwt_secret
+
+CLIENT_ORIGINS=http://localhost:5173
+
 SMTP_HOST=smtp.gmail.com
-SMTP_PORT=587
-SMTP_USER=your-freshfold-sender@gmail.com
-SMTP_APP_PASSWORD=your-16-character-app-password
-EMAIL_FROM=FreshFold <your-freshfold-sender@gmail.com>
+SMTP_PORT=465
+SMTP_USER=your_email@gmail.com
+SMTP_APP_PASSWORD=your_gmail_app_password
+EMAIL_FROM=QuickWash
+
+RAZORPAY_KEY_ID=your_razorpay_key_id
+RAZORPAY_KEY_SECRET=your_razorpay_key_secret
 ```
 
-5. Install backend dependencies and restart the server:
+Start the backend:
 
 ```powershell
-npm install
 npm run dev
 ```
 
-6. Test using an email inbox you can access. If SMTP settings are missing, local development returns a demo OTP in the API response instead of sending an email. Configure SMTP before deploying publicly. Never commit `.env` or share your app password.
+The backend should run at:
 
-## Included features
-- Customer and partner role-based OTP login
-- User profile and address/location setup
-- Service and clothing catalog with original prices
-- Create and list customer orders
-- Nearby order discovery by partner service radius
-- Accept order and progress through pickup/washing/delivery statuses
-- Pickup code validation, cancellation, ratings, partner stats
-- JWT-protected API routes
+```text
+http://localhost:5000
+```
 
-## Deployment checklist
-- Deploy the API and web app behind HTTPS; configure exact CORS origins and production environment variables.
-- Use a unique random JWT secret, managed MongoDB with backups, a production email provider, and Razorpay Live Mode keys only after end-to-end test-mode verification.
-- Review data retention, privacy/terms, monitoring, logs, alerts, and incident response before accepting real customer data or payments.
-- Frontend is a clean React implementation of the main flows; the original HTML/CSS files were not included in the uploaded source, so the interface has been recreated rather than pixel-for-pixel copied.
+Health check:
 
+```text
+http://localhost:5000/api/health
+```
 
-## Email OTP setup
+### 3. Frontend Setup
 
-OTP verification is sent to the email address entered by the user. The Indian mobile number is still stored for contact and pickup coordination.
+Open another terminal and navigate to the frontend directory:
 
-1. Enable 2-Step Verification on the sender Gmail account.
-2. Create a Google App Password for Mail. Use that 16-character app password, not your normal Gmail password.
-3. In `server/.env`, configure `SMTP_USER`, `SMTP_APP_PASSWORD`, `SMTP_HOST=smtp.gmail.com`, and `SMTP_PORT=587`. Set `EMAIL_FROM` to the sender address.
-4. Restart the backend. The API sends OTP email and verifies the code server-side.
-5. Keep `.env` private and do not commit it to Git. When SMTP settings are missing, the local development fallback returns a demo OTP in the API response; configure SMTP before deployment.
+```powershell
+cd client
+npm install
+```
 
-
-## Razorpay checkout (Test Mode)
-
-FreshFold supports Cash on Delivery and online payment through Razorpay. Online checkout creates a Razorpay order on the server, and the backend verifies the returned signature and confirms that the payment is captured before marking the FreshFold order as paid. Partners only see COD orders or online orders whose payment has been verified.
-
-1. Create/sign in to your Razorpay account and switch to **Test Mode**.
-2. Generate Test API keys in the Razorpay Dashboard (Account & Settings → API Keys).
-3. In `server/.env`, add the keys (keep them server-side only):
+Create a `.env` file in the frontend directory:
 
 ```env
-RAZORPAY_KEY_ID=rzp_test_your_key_id
-RAZORPAY_KEY_SECRET=your_test_key_secret
+VITE_API_URL=http://localhost:5000/api
 ```
 
-4. Install the new backend dependency and restart:
+Start the frontend:
 
 ```powershell
-cd "C:\My Files\Projects\FreshFold-MERN\server"
-npm install
 npm run dev
 ```
 
-5. Start the web client, select **Online · Razorpay**, and use Razorpay's test-mode payment details from its official test documentation. Never use live keys until you have tested success, failure, cancellation, and server-side verification. Do not commit `.env` or expose `RAZORPAY_KEY_SECRET` in frontend code.
+Open the local development URL shown in your terminal, usually:
 
-COD works without Razorpay keys. Razorpay online checkout requires valid Test Mode keys and a working internet connection. The backend checks payment signature and captured status before marking the order paid.
+```text
+http://localhost:5173
+```
 
+> **Note:** Folder names and npm scripts should match your actual project configuration. Never commit `.env` files or expose credentials in GitHub.
 
-## Loading states, motion and production hardening
+## Environment Variables
 
-- Web UI includes page entrance motion, loading indicators, disabled in-flight actions, and a reduced-motion accessibility setting. The Expo app includes a loading splash, an in-progress overlay, and subtle screen transitions.
-- OTP challenges are stored in MongoDB with hashed OTP values, expiry and attempt counts, so they survive a process restart. MongoDB TTL cleanup removes expired challenges.
-- OTP request/verification endpoints and the API have rate limits. Helmet security headers, an explicit CORS allow-list, a request body limit, a generic internal-server error response, health status, and graceful shutdown are configured.
-- `NODE_ENV=production` requires a 32+ character JWT secret, MongoDB, SMTP credentials and an explicit `CLIENT_ORIGINS` list. Demo OTP is disabled in production.
-- Configure `CLIENT_ORIGINS` to only the exact web app origins (comma-separated), `VITE_API_URL` to the HTTPS API URL, and `TRUST_PROXY=true` only when running behind your trusted hosting proxy.
-- Use HTTPS, a managed MongoDB deployment with backups, a transactional email provider, monitored logs, alerts, automated tests, and Razorpay live keys only after end-to-end testing. Keep all secrets in your hosting provider's secret/environment manager.
-- This is a production-hardening baseline, not a certification or substitute for a deployment security review. Before taking real customer payments, add and test Razorpay webhooks for reconciliation, persistent shared rate-limit storage for multi-instance deployment, automated integration tests, privacy/terms pages, and operational monitoring.
+| Variable | Purpose |
+|---|---|
+| `MONGO_URI` | MongoDB database connection |
+| `JWT_SECRET` | JWT token signing secret |
+| `CLIENT_ORIGINS` | Allowed frontend origins |
+| `SMTP_HOST` | Email SMTP server |
+| `SMTP_PORT` | SMTP connection port |
+| `SMTP_USER` | Email account |
+| `SMTP_APP_PASSWORD` | Email application password |
+| `RAZORPAY_KEY_ID` | Razorpay public key ID |
+| `RAZORPAY_KEY_SECRET` | Razorpay secret key |
 
-## Partner map navigation
+## API Testing
 
-After a partner accepts a pickup request, the assigned order card shows the customer's pickup address and a **Navigate to customer** button. The button opens Google Maps directions using the customer's saved GPS coordinates when available, or the saved address as a fallback. Customer coordinates are only exposed to the partner assigned to that order.
+Backend APIs can be tested using Postman.
+
+The application includes APIs for:
+- User authentication and OTP verification.
+- Service catalog retrieval.
+- Order creation and management.
+- Order status updates.
+- Payment operations.
+- Role-based dashboard functionality.
+
+## Deployment
+
+QuickWash uses separate frontend and backend deployments.
+
+- Frontend: Render
+- Backend: Vercel / Render (depending on the active deployment)
+
+Configure the production frontend API URL using:
+
+```env
+VITE_API_URL=https://YOUR_BACKEND_URL/api
+```
+
+Configure the backend's allowed frontend origins using:
+
+```env
+CLIENT_ORIGINS=https://YOUR_FRONTEND_URL
+```
+
+Also configure the required MongoDB, JWT, SMTP, and Razorpay environment variables in the hosting provider.
+
+## Future Improvements
+
+- Real-time order tracking.
+- Push notifications for order updates.
+- Improved admin analytics.
+- Order scheduling.
+- Customer reviews and ratings.
+- Enhanced mobile responsiveness.
+- Automated testing and CI/CD integration.
+
+## Project Goal
+
+The goal of QuickWash is to simplify the laundry booking process by providing a convenient online platform where customers can book services, delivery partners can manage assigned orders, and administrators can monitor the entire operation.
+
+---
+
+**QuickWash – Making Laundry Booking Simple and Convenient.**
