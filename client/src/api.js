@@ -6,7 +6,7 @@ export function getToken(role) {
 }
 export async function api(path, role, method = "GET", body) {
   const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), 20000);
+  const timer = setTimeout(() => controller.abort(), 60000);
   try {
     const token = getToken(role);
     const response = await fetch(BASE + path, {
