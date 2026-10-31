@@ -94,7 +94,7 @@ QuickWash uses separate frontend and backend deployments.
 
 - Frontend: Render
 - Backend: Vercel / Render (depending on the active deployment)
-Checkout the website here https://quickwash-new-frontend.onrender.com/
+- Checkout the website here https://quickwash-new-frontend.onrender.com/
 
 ## Future Improvements
 
