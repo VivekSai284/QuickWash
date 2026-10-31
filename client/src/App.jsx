@@ -155,7 +155,7 @@ export default function App() {
   const load = async () => {
     try {
       const base = (
-        import.meta.env.VITE_API_URL || "https://quickwash-new.onrender.com/api"
+        import.meta.env.VITE_API_URL || "https://quick-wash-pi.vercel.app/api"
       ).replace(/\/$/, "");
       const response = await fetch(base + "/catalog");
       if (!response.ok) throw new Error("Could not load the service catalog");
